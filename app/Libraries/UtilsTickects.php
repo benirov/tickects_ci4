@@ -88,63 +88,67 @@ class UtilsTickects
         $mailbox = imap_open("{".$name_server.":".$port_server."/".$protocol_server."}INBOX", $user_smtp, $password_smtp);
         $mail = imap_search($mailbox, "UNSEEN");
 
-        if(count($mail)){
+        if(!empty($mail)){
 
-            foreach ($mail as $key => $value) {
-                # code...
-                $mail_headers = imap_headerinfo($mailbox, $value);
-                $subject = $mail_headers->subject;
-                $body = imap_qprint(imap_body($mailbox, $value));
-                //user
-                $insert = array(
-                    "email" => $mail_headers->from[0]->mailbox."@".$mail_headers->from[0]->host
-                );
-                $UserModel->insert($insert);
-                $user_id = $UserModel->getInsertID();
-                //ticket
-                $insert = array(
-                    "title" => $subject,
-                    "description" => $body,
-                    "status_ticket" => 6,
-                    "id_user" => $user_id
-                );
-    
-                $Tickects->insert($insert);
-                $ticket_id = $Tickects->getInsertID();
-    
-                $titles = array(
-                    "Create",
-                    "On queue",
-                    "Assigned",
-                    "Send solution",
-                    "Ticket closed",
-                );
-    
-                $descriptions = array(
-                    "Ticket Create",
-                    "Waiting for agent",
-                    "Agent assigned",
-                    "Send solution to client",
-                    "ticket closed by agente",
-                );
-                for ($i=0; $i <= 4; $i++) { 
+            if(count($mail)){
+
+                foreach ($mail as $key => $value) {
                     # code...
+                    $mail_headers = imap_headerinfo($mailbox, $value);
+                    $subject = $mail_headers->subject;
+                    $body = imap_qprint(imap_body($mailbox, $value));
+                    //user
                     $insert = array(
-                        "title" => $titles[$i],
-                        "descripcion" => $descriptions[$i],
-                        "id_ticket" => $ticket_id,
+                        "email" => $mail_headers->from[0]->mailbox."@".$mail_headers->from[0]->host
                     );
-                    //HistoricalTickects
-                    $HistoricalTickects->insert($insert);
+                    $UserModel->insert($insert);
+                    $user_id = $UserModel->getInsertID();
+                    //ticket
+                    $insert = array(
+                        "title" => $subject,
+                        "description" => $body,
+                        "status_ticket" => 5,
+                        "id_user" => $user_id
+                    );
+        
+                    $Tickects->insert($insert);
+                    $ticket_id = $Tickects->getInsertID();
+        
+                    $titles = array(
+                        "Create",
+                        "On queue",
+                        "Assigned",
+                        "Send solution",
+                        "Ticket closed",
+                    );
+        
+                    $descriptions = array(
+                        "Ticket Create",
+                        "Waiting for agent",
+                        "Agent assigned",
+                        "Send solution to client",
+                        "ticket closed by agente",
+                    );
+                    for ($i=0; $i <= 4; $i++) { 
+                        # code...
+                        $insert = array(
+                            "title" => $titles[$i],
+                            "descripcion" => $descriptions[$i],
+                            "id_ticket" => $ticket_id,
+                        );
+                        //HistoricalTickects
+                        $HistoricalTickects->insert($insert);
+                    }
+                    
+        
+                    //history
+        
+        
+                    
                 }
                 
-    
-                //history
-    
-    
-                
             }
-            
+
         }
 
         //imap_setflag_full($mailbox, $value, "\\Seen \\Flagged");

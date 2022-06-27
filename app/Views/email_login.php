@@ -48,7 +48,7 @@
       </label>
       <button type="button"class="btn btn-login">Check tikects</button>
     </form>
-    <p class="text-mute"> You still don't have tickets generated?  <a href="$">Submit a request and start tracking</a></p>
+    <p class="text-mute"> You still don't have tickets generated?  <h4 style="color: #2196f3;">Submit a request to <label>tickectci4@gmail.com</label> and start tracking</4></p>
   </main>
   <div class="welcome-container">
     <img src="/assets/img/login.png" alt="Login">
