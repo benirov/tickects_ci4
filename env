@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+ CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
@@ -23,13 +23,13 @@
 # app.baseURL = ''
 # app.forceGlobalSecureRequests = false
 
-# app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
-# app.sessionCookieName = 'ci_session'
-# app.sessionExpiration = 7200
-# app.sessionSavePath = null
-# app.sessionMatchIP = false
-# app.sessionTimeToUpdate = 300
-# app.sessionRegenerateDestroy = false
+ app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
+ app.sessionCookieName = 'ci_session'
+ app.sessionExpiration = 7200
+ app.sessionSavePath = null
+ app.sessionMatchIP = false
+ app.sessionTimeToUpdate = 300
+ app.sessionRegenerateDestroy = false
 
 # app.CSPEnabled = false
 
