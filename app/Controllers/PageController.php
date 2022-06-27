@@ -7,7 +7,7 @@ class PageController extends BaseController
     public function __construct(){
         $utils = new UtilsTickects();
         if(!$utils->validateSesion()){
-            header('Location: http://tickets.personal.com/');
+            header('Location: https://tickects-app-ci4.herokuapp.com/');
             exit;
         }
     }
