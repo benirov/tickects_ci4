@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'https://tickects-app-ci4.herokuapp.com/';
+    public $baseURL = 'http://tickets.personal.com/';
 
     /**
      * --------------------------------------------------------------------------

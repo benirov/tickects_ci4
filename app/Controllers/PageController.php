@@ -5,10 +5,15 @@ class PageController extends BaseController
 {
 
     public function __construct(){
-        $utils = new UtilsTickects();
-        if(!$utils->validateSesion()){
-            header('Location: https://tickects-app-ci4.herokuapp.com/');
-            exit;
+
+        if($_SERVER["REQUEST_URI"] == '/PageController/getEmails'){
+
+        }else{
+            $utils = new UtilsTickects();
+            if(!$utils->validateSesion()){
+                header('Location: https://tickects-app-ci4.herokuapp.com/');
+                exit;
+            }
         }
     }
 
@@ -34,7 +39,7 @@ class PageController extends BaseController
 
 
     public function getEmails(){
-
+        
         $utils = new UtilsTickects();
         $utils->checkEMailInbox();
     }
